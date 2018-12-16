@@ -5,20 +5,35 @@ import java.util.Scanner;
 public class SubstringComparisons {
 	private Scanner scan;
 	String[] sub_s;
-	String latin_alfabesi = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	String latin_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	int maxLength=1000;
 	
 	public SubstringComparisons() {
 		String s="";
 		int k=0;
 		scan = new Scanner(System.in);
 		
-		//string [1,1000] araliginda olmali.
-		System.out.println("Bir kelime girin");
+		//string should be in [1,maxLength] range.
+		System.out.println("Please enter a word.");
 		s = scan.next();
-		//girilecek sayinin string boyundan kucuk olma kosuluna bak.
-		System.out.println("Bir sayi");
+		while(s.length()>maxLength)
+		{
+			System.out.println("The length of the word should be maximum "+maxLength+".");
+			System.out.println("Please enter a word.");
+			s = scan.next();			
+		}
+		//control the value of k. it should be less or equal to the length of s.
+		System.out.println("Please enter an integer number");
 		k = scan.nextInt();
+		while(k>s.length())
+		{
+			System.out.println("The number should be less than or equal to "+s.length()+".");
+			System.out.println("Please enter an integer number");
+			k = scan.nextInt();			
+		}
 		
+		System.out.println("Word="+s);
+		System.out.println("Number="+k);
 		getSmallestAndLargest(s,k);
 	}
 
@@ -26,7 +41,7 @@ public class SubstringComparisons {
 		sub_s = new String[s.length()-k+1];
 		String smallest = "";
 		String largest = "";
-		int indeks1, indeks2, isSmall=0;
+		int index1, index2, isSmall=0;
 		
 		smallest = s.substring(0,3);
 		largest = s.substring(0,3);
@@ -37,16 +52,16 @@ public class SubstringComparisons {
 			sub_s[i] = s.substring(i, i+k);
 			for (int j = 0; j < k; j++) 
 			{
-				indeks1 = latin_alfabesi.indexOf(sub_s[i].substring(j, j+1));
-				indeks2 = latin_alfabesi.indexOf(smallest.substring(j, j+1));
+				index1 = latin_alphabet.indexOf(sub_s[i].substring(j, j+1));
+				index2 = latin_alphabet.indexOf(smallest.substring(j, j+1));
 				
-				if(indeks1<indeks2)
+				if(index1<index2)
 				{
 					smallest = sub_s[i];
 					isSmall= 1;
 					break;
 				}
-				else if(indeks1>indeks2)
+				else if(index1>index2)
 				{
 					break;
 				}
@@ -54,18 +69,18 @@ public class SubstringComparisons {
 			
 			for (int j = 0; j < k; j++) 
 			{
-				/*small olan subarraylargestkontrolune sokulmaz*/
+				/*if sub_s is flagged as smallest, we skip the largest control.*/
 				if(isSmall==0)
 				{
-					indeks1 = latin_alfabesi.indexOf(sub_s[i].substring(j, j+1));
-					indeks2 = latin_alfabesi.indexOf(largest.substring(j, j+1));
+					index1 = latin_alphabet.indexOf(sub_s[i].substring(j, j+1));
+					index2 = latin_alphabet.indexOf(largest.substring(j, j+1));
 					
-					if(indeks1>indeks2)
+					if(index1>index2)
 					{
 						largest = sub_s[i];
 						break;
 					}
-					else if(indeks1<indeks2)
+					else if(index1<index2)
 					{
 						break;
 					}
