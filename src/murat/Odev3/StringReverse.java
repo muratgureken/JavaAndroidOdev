@@ -41,10 +41,13 @@ public class StringReverse {
 	}
 
 	private boolean stringReverseControl(String s, int stringLength) {
-		boolean reverseControl=true;
-		
+		boolean reverseControl=true, durum;
+		String a,b;
 		for (int i = 0; i < (stringLength/2); i++) {
-			if(s.substring(i, i+1)!=s.substring(stringLength-i-1, stringLength-i))
+			a = s.substring(i, i+1);
+			b = s.substring(stringLength-i-1, stringLength-i);
+			durum = a.contentEquals(b);
+			if(!durum)
 			{
 				reverseControl=false;
 				break;
@@ -55,7 +58,7 @@ public class StringReverse {
 
 	private boolean EnglishLettersControl(String s, int stringLength) {
 		boolean letterControl=true;
-		String english_alphabet = "abcdefghijklmnopqrstuvwxyz";		
+		String english_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";		
 		
 		for (int i = 0; i < stringLength; i++) {	
 			//if once string has a letter different from English alphabet, return false.
