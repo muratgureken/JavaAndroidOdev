@@ -112,8 +112,10 @@ public class HesapMakinesi {
 			}
 			else
 			{
+				System.out.println("AraIslem="+araIslem);
 				araDeger = Double.parseDouble(araIslem);
 				sonIslem1[count] = araDeger;
+				araIslem = "";
 				//islemlerden 4 cikar. tum islemler negatif sayi olursa diger degerlerden ayirt edilebilir.
 				count++;
 				sonIslem1[count] = IslemTipiSade[i]-4;
@@ -122,7 +124,7 @@ public class HesapMakinesi {
 			if(i==(islemBoyut-1))
 			{
 				araDeger = Double.parseDouble(araIslem);
-				sonIslem1[count] = araDeger;				
+				sonIslem1[count] = araDeger;		
 			}
 		}
 		islemBoyut = count+1;
@@ -165,6 +167,7 @@ public class HesapMakinesi {
 				Count++;
 				IslemTipiSade[Count] = IslemTipi[i];
 				IslemSade[Count] = IslemListesi.substring(i, i+1);
+				Count++;
 			}
 			else /*islem varsa*/
 			{
