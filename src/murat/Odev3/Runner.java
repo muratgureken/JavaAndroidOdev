@@ -6,9 +6,6 @@ public class Runner {
 		//new StringReverse();
 		//new SubstringComparisons();
 		//new Subarray();
-		String s="3.";
-		double d = Double.parseDouble(s);
-		System.out.println(d+d);
 		new HesapMakinesi();
 	}
 }
